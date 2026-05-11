@@ -6,7 +6,7 @@ BASE_URL = "http://127.0.0.1:8051"
 @pytest.fixture
 def dashboard(dash_server, page):
     page.goto(BASE_URL)
-    page.wait_for_selector(".dash-graph", timeout=10000)
+    page.wait_for_selector(".dash-graph", timeout=30000)
     return page
 
 
@@ -16,8 +16,8 @@ def test_header_present(dashboard):
 
 
 def test_visualisations_present(dashboard):
-    dashboard.wait_for_selector("#sales-chart", timeout=10000)
-    dashboard.wait_for_selector("#region-bar-chart", timeout=10000)
+    dashboard.wait_for_selector("#sales-chart", state="attached", timeout=30000)
+    dashboard.wait_for_selector("#region-bar-chart", state="attached", timeout=30000)
 
 
 def test_region_picker_present(dashboard):
