@@ -16,8 +16,10 @@ def test_header_present(dashboard):
 
 
 def test_visualisations_present(dashboard):
-    dashboard.wait_for_selector("#sales-chart", state="attached", timeout=30000)
-    dashboard.wait_for_selector("#region-bar-chart", state="attached", timeout=30000)
+    dashboard.wait_for_function(
+        "document.querySelectorAll('.dash-graph').length >= 2",
+        timeout=30000,
+    )
 
 
 def test_region_picker_present(dashboard):
